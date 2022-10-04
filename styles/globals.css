@@ -20,8 +20,20 @@
   section {
     @apply space-y-8;
   }
+  label {
+    @apply text-lg;
+    @apply font-semibold;
+  }
   input {
     @apply border;
+    @apply md:w-1/2;
+  }
+  select {
+    @apply md:w-1/2;
+    @apply text-center;
+  }
+  fieldset {
+    @apply flex flex-col md:flex-row md:justify-between;
   }
 }
 

@@ -34,6 +34,8 @@ const explainerCards = CARD_CONTENT.map((card, index) => {
   return <ExplainerCard {...card} key={index} />
 })
 
+
+
 const Home: NextPage = () => {
   return (
     <article className="w-5/6 md:w-4/6 mx-auto space-y-32 my-20">
@@ -54,115 +56,153 @@ const Home: NextPage = () => {
 
       </section>
 
-      <section className="bg-white border border-stone-500 p-4">
+      <section className="bg-white border border-stone-500 p-4 md:w-2/3 md:mx-auto">
         <h2 className="text-center">Double Check your Rates Now!</h2>
-        <form className="flex flex-col gap-2 w-1/2 ">
-          <label htmlFor="goal">Goal:</label>
-          <select id="goal" name="goal">
-            <option value="purchase loan">Purchase Loan</option>
-            <option value="rate and term">Rate & Term</option>
-            <option value="cash out">Cash Out</option>
-            <option value="fha streamline">FHA Streamline</option>
-            <option value="va irrl">VA IRRL</option>
-          </select>
+        <form className="flex flex-col gap-4 md:w-2/3 md:mx-auto">
+          <fieldset>
+            <label htmlFor="state">State:</label>
+            <select className="">
+              <option value="California">California</option>
+              <option value="Texas">Texas</option>
+              <option value="Florida">Florida</option>
+              <option value="Virginia">Virginia</option>
+              <option value="Maryland">Maryland</option>
+              <option value="Tennessee">Tennessee</option>
+              <option value="Other">Other</option>
+            </select>
+          </fieldset>
 
-          <label htmlFor="loan product">Loan Product:</label>
-          <select id="loan product" name="loan product">
-            <option value="30 year fixed">30 Year Fixed</option>
-            <option value="20 year fixed">20 Year Fixed</option>
-            <option value="15 year fixed">15 Year Fixed</option>
-            <option value="10 year fixed">10 Year Fixed</option>
-            <option value="5 year fixed">5 Year Fixed</option>
-            <option value="3/1 adjustable">3/1 Adjustable</option>
-            <option value="5/1 adjustable">5/1 Adjustable</option>
-            <option value="7/1 adjustable">7/1 Adjustable</option>
-            <option value="10/1 adjustable">10/1 Adjustable</option>
-            <option value="3/6 adjustable">3/6 Adjustable</option>
-            <option value="5/6 adjustable">5/6 Adjustable</option>
-            <option value="7/6 adjustable">7/6 Adjustable</option>
-            <option value="10/6 adjustable">10/6 Adjustable</option>
-          </select>
+          <fieldset>
+            <label htmlFor="county">County:</label>
+            <input id="county" name="county" className=""/>
+          </fieldset>
 
-          <label htmlFor="loan type">Loan Type:</label>
-          <select id="loan type" name="loan type">
-            <option value="Conventional">Conventional</option>
-            <option value="FHA">FHA</option>
-            <option value="VA">VA</option>
-            <option value="NonQM">NonQM</option>
-            <option value="Jumbo">Jumbo</option>
-          </select>
+          <fieldset>
+            <label htmlFor="goal">Goal:</label>
+            <select id="goal" name="goal">
+              <option value="purchase loan">Purchase Loan</option>
+              <option value="rate and term">Rate & Term</option>
+              <option value="cash out">Cash Out</option>
+              <option value="fha streamline">FHA Streamline</option>
+              <option value="va irrl">VA IRRL</option>
+            </select>
+          </fieldset>
 
-          <label htmlFor="purchase price">Purchase Price:</label>
-          <input id="purchase price" name="purchase price"/>
+          <fieldset>
+            <label htmlFor="loan product">Loan Product:</label>
+            <select id="loan product" name="loan product">
+              <option value="30 year fixed">30 Year Fixed</option>
+              <option value="20 year fixed">20 Year Fixed</option>
+              <option value="15 year fixed">15 Year Fixed</option>
+              <option value="10 year fixed">10 Year Fixed</option>
+              <option value="5 year fixed">5 Year Fixed</option>
+              <option value="3/1 adjustable">3/1 Adjustable</option>
+              <option value="5/1 adjustable">5/1 Adjustable</option>
+              <option value="7/1 adjustable">7/1 Adjustable</option>
+              <option value="10/1 adjustable">10/1 Adjustable</option>
+              <option value="3/6 adjustable">3/6 Adjustable</option>
+              <option value="5/6 adjustable">5/6 Adjustable</option>
+              <option value="7/6 adjustable">7/6 Adjustable</option>
+              <option value="10/6 adjustable">10/6 Adjustable</option>
+            </select>
+          </fieldset>
 
-          <label htmlFor="loan amount">Loan Amount:</label>
-          <input id="loan amount" name="loan amount"/>
+          <fieldset>
+            <label htmlFor="loan type">Loan Type:</label>
+            <select id="loan type" name="loan type">
+              <option value="Conventional">Conventional</option>
+              <option value="FHA">FHA</option>
+              <option value="VA">VA</option>
+              <option value="NonQM">NonQM</option>
+              <option value="Jumbo">Jumbo</option>
+            </select>
+          </fieldset>
 
-          <label htmlFor="2nd loan">Second Loan (if any):</label>
-          <input id="2nd loan" name="2nd loan"/>
+          <fieldset>
+            <label htmlFor="purchase price">Purchase Price:</label>
+            <input id="purchase price" name="purchase price"/>
+          </fieldset>
 
-          <label htmlFor="house type">House Type</label>
-          <select id="house type" name="house type">
-            <option value="single family">Single Family</option>
-            <option value="townhouse">Townhouse</option>
-            <option value="condo">Condo</option>
-            <option value="2 unit">2 Unit</option>
-            <option value="3 unit">3 unit</option>
-            <option value="4 unit">4 unit</option>
-            <option value="PUD">PUD</option>
-          </select>
+          <fieldset>
+            <label htmlFor="loan amount">Loan Amount:</label>
+            <input id="loan amount" name="loan amount"/>
+          </fieldset>
 
-          <label htmlFor="state">State:</label>
-          <input id="state" name="state"/>
+          <fieldset>
+            <label htmlFor="2nd loan">Second Loan (if any):</label>
+            <input id="2nd loan" name="2nd loan"/>
+          </fieldset>
 
-          <label htmlFor="county">County:</label>
-          <input id="county" name="county"/>
-         
-          <label htmlFor="occupancy">Occupancy:</label>
-          <select id="occupancy" name="occupancy">
-            <option value="primary residence">Primary Residence</option>
-            <option value="second home">Second Home</option>
-            <option value="investment property">Investment Property</option>
-          </select>
+          <fieldset>
+            <label htmlFor="house type">House Type:</label>
+            <select id="house type" name="house type">
+              <option value="single family">Single Family</option>
+              <option value="townhouse">Townhouse</option>
+              <option value="condo">Condo</option>
+              <option value="2 unit">2 Unit</option>
+              <option value="3 unit">3 unit</option>
+              <option value="4 unit">4 unit</option>
+              <option value="PUD">PUD</option>
+            </select>
+          </fieldset>
 
-          <label htmlFor="mid fico">Mid FICO</label>
-          <select id="mid fico" name="mid fico">
-            <option value="760+">760+</option>
-            <option value="740-759">740-759</option>
-            <option value="720-739">720-739</option>
-            <option value="700-719">700-719</option>
-            <option value="680-699">680-699</option>
-            <option value="660-679">660-679</option>
-            <option value="640-659">640-659</option>
-            <option value="620-639">620-639</option>
-            <option value="600-619">600-619</option>
-            <option value="580-599">580-599</option>
-          </select>
+          <fieldset>
+            <label htmlFor="occupancy">Occupancy:</label>
+            <select id="occupancy" name="occupancy">
+              <option value="primary residence">Primary Residence</option>
+              <option value="second home">Second Home</option>
+              <option value="investment property">Investment Property</option>
+            </select>
+          </fieldset>
 
-          <label htmlFor="self employed">Self Employed?</label>
-          <input type="checkbox" id="self employed" name="self employed"/>
-          
-          <label htmlFor="impounds">Impounds?</label>
-          <input type="checkbox" id="impounds" name="impounds"/>
+          <fieldset>
+            <label htmlFor="mid fico">Mid FICO:</label>
+            <select id="mid fico" name="mid fico">
+              <option value="760+">760+</option>
+              <option value="740-759">740-759</option>
+              <option value="720-739">720-739</option>
+              <option value="700-719">700-719</option>
+              <option value="680-699">680-699</option>
+              <option value="660-679">660-679</option>
+              <option value="640-659">640-659</option>
+              <option value="620-639">620-639</option>
+              <option value="600-619">600-619</option>
+              <option value="580-599">580-599</option>
+            </select>
+          </fieldset>
 
-          <label htmlFor="reserves">Reserves:</label>
-          <select id="reserves" name="reserves">
-            <option value="">12+ Months</option>
-            <option value="">9-12 Months</option>
-            <option value="">6-9 Months</option>
-            <option value="">3-6 Months</option>
-            <option value="">1-3 Months</option>
-            <option value="">0 Months</option>
-          </select>
+          <fieldset className="flex flex-row justify-between">
+            <label htmlFor="self employed">Self Employed?</label>
+            <input type="checkbox" id="self employed" name="self employed"/>
+          </fieldset>
 
-          <label htmlFor="pmi">PMI:</label>
-          <select id="pmi" name="pmi">
-            <option value="not needed">Not Needed</option>
-            <option value="borrower pays pmi">You Pay the PMI</option>
-            <option value="lender pays pmi">Lender Pays the PMI</option>
-          </select>
+          <fieldset className="flex flex-row justify-between">
+            <label htmlFor="impounds">Impounds?</label>
+            <input type="checkbox" id="impounds" name="impounds"/>
+          </fieldset>
 
-          <input type="submit" value="Submit" className="cursor-pointer"/>
+          <fieldset>
+            <label htmlFor="reserves">Reserves:</label>
+            <select id="reserves" name="reserves">
+              <option value="">12+ Months</option>
+              <option value="">9-12 Months</option>
+              <option value="">6-9 Months</option>
+              <option value="">3-6 Months</option>
+              <option value="">1-3 Months</option>
+              <option value="">0 Months</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <label htmlFor="pmi">PMI:</label>
+            <select id="pmi" name="pmi">
+              <option value="not needed">Not Needed</option>
+              <option value="borrower pays pmi">You Pay the PMI</option>
+              <option value="lender pays pmi">Lender Pays the PMI</option>
+            </select>
+          </fieldset>
+
+          <input type="submit" value="Submit" className="cursor-pointer mx-auto my-10"/>
         </form>
       </section>
 
