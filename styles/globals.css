@@ -5,8 +5,8 @@
 @layer base {
   html,
   body {
-    @apply bg-stone-200;
-    @apply text-green-900;
+    @apply bg-white/90;
+    @apply text-black/90;
   }
   h1 {
     @apply text-5xl font-bold;
@@ -21,21 +21,39 @@
     @apply space-y-8;
   }
   label {
-    @apply text-lg;
-    @apply font-semibold;
+    @apply text-black;
+    @apply inline-block;
   }
   input {
-    @apply border;
-    @apply md:w-1/2;
+    @apply bg-white border border-2 rounded-md;
+    @apply p-2;
   }
-  select {
-    @apply md:w-1/2;
-    @apply text-center;
+  select, input[type="text"], input[type="email"] {
+    @apply bg-white border border-2 rounded-md;
+    @apply w-full;
+    @apply p-2;
   }
   fieldset {
-    @apply flex flex-col md:flex-row md:justify-between;
+    @apply md:grid md:grid-cols-2;
+  }
+  fieldset > legend {
+    @apply mt-4;
+    @apply text-lg font-semibold;
+  }
+  fieldset > div {
   }
 }
 
+
 @layer components {
+  .radio-card {
+    @apply inline-flex items-center space-x-2 border-2 rounded-md p-2;
+    @apply hover:bg-emerald-100 hover:border-emerald-400;
+  }
+  .radio-card > input {
+    @apply w-5 h-5;
+  }
+  .radio-card--active {
+    @apply bg-emerald-200 border-emerald-600;
+  }
 }
