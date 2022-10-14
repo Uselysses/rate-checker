@@ -282,12 +282,12 @@ const FormField = () => {
         </div>
 
         <div className="space-y-1">
-          <legend>Are you self-employed?</legend>
+          <legend className="text-slate-600">Are you self-employed?</legend>
           <BinaryRadioButtons field="selfEmployed"  />
         </div>
 
         <div className="space-y-1">
-          <legend>Do you have any impounds?</legend>
+          <legend className="text-slate-600">Do you have any impounds?</legend>
           <BinaryRadioButtons field="impounds"  />
         </div>
       </fieldset>
@@ -411,7 +411,7 @@ const Home: NextPage = () => {
       <div className="bg-gradient-to-r from-sky-500 to-blue-700 py-20 border-b-2 border-blue-400 shadow-md drop-shadow-lg">
         <section className="text-center">
           <h1 className="text-white/90">Double Check your Rate within 48 hours <br/> No Credit Pull Required</h1>
-          <p className="text-amber-100">Sleep better at night knowing you got the best rate possible</p>
+          <p className="text-amber-200">Sleep better at night knowing you got the best rate possible</p>
           <div className="space-x-8">
             <a 
               className="primary-button"
@@ -459,7 +459,7 @@ const Home: NextPage = () => {
         </ul>
       </section>
 
-      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 md:max-w-screen-sm md:mx-auto bg-white/80 shadow-lg p-4">
+      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-slate-100/50 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
         <h2 className="text-center">Double Check your Rates Now!</h2>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4 md:mx-auto">
