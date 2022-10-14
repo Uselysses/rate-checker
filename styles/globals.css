@@ -63,7 +63,7 @@
 
   }
   .primary-button {
-    @apply border px-4 py-2 rounded-md bg-cyan-400 border-cyan-300 text-white font-semibold hover:bg-cyan-300 hover:text-black/80 hover:shadow-md;
+    @apply border px-4 py-2 rounded-md bg-amber-500 border-amber-400 text-white font-semibold hover:bg-amber-400 hover:text-black/80 hover:shadow-md;
   }
   .secondary-button {
     @apply border px-4 py-2 rounded-md bg-blue-500 text-white/90 font-semibold hover:bg-blue-400 hover:text-white hover:shadow-md;

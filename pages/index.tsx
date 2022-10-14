@@ -46,7 +46,7 @@ type ExplainerCardProps = {
 
 const ExplainerCard = ({title, heroIcon}: ExplainerCardProps) => {
   return(
-    <div className="flex flex-col items-center text-center space-y-2">
+    <div className="flex flex-col items-center space-y-2">
       <figure className="text-blue-500 w-20 h-20">{heroIcon}</figure>
       <h3 className="font-semibold">{title}</h3>
     </div>
@@ -408,10 +408,10 @@ const Home: NextPage = () => {
 
   return (
     <article className="space-y-32 mb-20">
-      <div className="bg-gradient-to-r from-sky-600 to-blue-500 py-20 border-b-2 shadow-lg">
+      <div className="bg-gradient-to-r from-sky-500 to-blue-700 py-20 border-b-2 border-blue-400 shadow-md drop-shadow-lg">
         <section className="text-center">
           <h1 className="text-white/90">Double Check your Rate within 48 hours <br/> No Credit Pull Required</h1>
-          <p className="text-white/80">Sleep better at night knowing you got the best rate possible.</p>
+          <p className="text-amber-100">Sleep better at night knowing you got the best rate possible</p>
           <div className="space-x-8">
             <a 
               className="primary-button"
@@ -443,23 +443,23 @@ const Home: NextPage = () => {
 
       <section className="space-y-8">
         <h2 className="text-center">You could save thousands on your mortgage</h2>
-        <ul className="space-y-4">
+        <ul className="md:grid md:grid-cols-2 space-y-4 md:space-y-0">
           <div className="flex space-x-2 items-center">
-            <ArrowRightIcon className="h-10 w-10 "/>
+            <ArrowRightIcon className="h-20 w-20"/>
             <li>
-              According to <a className="text-blue-500 hover:text-blue-400" href="https://www.freddiemac.com/research/insight/20180417-consumers-leaving-money">research by Freddie Mac</a> nearly half of all home buyers pick the first lender they find without shopping for a better rate.
+              According to <a className="text-blue-500 hover:text-blue-400" href="https://www.freddiemac.com/research/insight/20180417-consumers-leaving-money">research by Freddie Mac</a> <strong>nearly half of all home buyers pick the first lender they find</strong> without shopping for a better rate.
             </li>
           </div>
           <div className="flex space-x-2 items-center">
-            <ArrowRightIcon className="h-10 w-10"/>
+            <ArrowRightIcon className="h-20 w-20"/>
             <li>
-              Rates vary from lender to lender, by not getting a second opinion you&apos;re leaving thousands of dollars on the table.
+              Not all lenders are created equal! <strong>Rates vary from lender to lender</strong>, by not getting a second opinion you&apos;re leaving thousands of dollars on the table.
             </li>
           </div>
         </ul>
       </section>
 
-      <section id="form" className="md:border md:border-slate-500 md:rounded-md md:p-8 md:max-w-screen-sm md:mx-auto bg-white/80 shadow-lg p-4">
+      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 md:max-w-screen-sm md:mx-auto bg-white/80 shadow-lg p-4">
         <h2 className="text-center">Double Check your Rates Now!</h2>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4 md:mx-auto">
@@ -481,7 +481,7 @@ const Home: NextPage = () => {
               </div>
             )}
 
-            <input type="submit" value="Submit" className="secondary-button cursor-pointer mx-auto my-10"/>
+            <input type="submit" value="Submit" className="primary-button cursor-pointer mx-auto my-10"/>
           </form>
         </FormProvider>
       </section>
@@ -506,6 +506,13 @@ const Home: NextPage = () => {
             We are fully licensed to provide mortgages in California, Texas, Florida, Virginia, Maryland, and Tennessee.
           </p>
         </div>
+        <div>
+          <h3>Is this a loan application?</h3>
+          <p>
+            No. This service provides mortgage rate quotes without taking in any personally identifying information, and is not a loan application.
+          </p>
+        </div>
+
       </section>
     </article>
   )
