@@ -5,6 +5,17 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: [
+        "Inter",
+        "Lucida Grande",
+        "Lucida Sans Unicode",
+        "Lucida Sans",
+        "Geneva",
+        "Verdana",
+        "sans-serif",
+      ]
+    },
     extend: {},
   },
   plugins: [],

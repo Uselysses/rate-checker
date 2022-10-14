@@ -5,11 +5,11 @@
 @layer base {
   html,
   body {
-    @apply bg-white/90;
+    @apply bg-slate-50;
     @apply text-black/90;
   }
   h1 {
-    @apply text-5xl font-bold;
+    @apply text-4xl md:text-5xl font-bold;
   }
   h2 {
     @apply text-3xl font-semibold;
@@ -19,6 +19,7 @@
   }
   section {
     @apply space-y-8;
+    @apply w-5/6 md:w-4/6 mx-auto; 
   }
   label {
     @apply text-black;
@@ -32,6 +33,7 @@
     @apply bg-white border border-2 rounded-md;
     @apply w-full;
     @apply p-2;
+    @apply accent-blue-500;
   }
   fieldset {
     @apply md:grid md:grid-cols-2;
@@ -48,12 +50,23 @@
 @layer components {
   .radio-card {
     @apply inline-flex items-center space-x-2 border-2 rounded-md p-2;
-    @apply hover:bg-emerald-100 hover:border-emerald-400;
+    @apply hover:bg-blue-100 hover:border-blue-400;
   }
   .radio-card > input {
     @apply w-5 h-5;
   }
   .radio-card--active {
-    @apply bg-emerald-200 border-emerald-600;
+    @apply bg-blue-200 border-blue-600;
+  }
+  .uploadEstimateEmail {
+      @apply w-1/2;
+
+  }
+  .primary-button {
+    @apply border px-4 py-2 rounded-md bg-cyan-400 border-cyan-300 text-white font-semibold hover:bg-cyan-300 hover:text-black/80 hover:shadow-md;
+  }
+  .secondary-button {
+    @apply border px-4 py-2 rounded-md bg-blue-500 text-white/90 font-semibold hover:bg-blue-400 hover:text-white hover:shadow-md;
   }
 }
+
