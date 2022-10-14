@@ -30,7 +30,7 @@
     @apply p-2;
   }
   select, input[type="text"], input[type="email"] {
-    @apply bg-white border border-2 rounded-md;
+    @apply bg-slate-200/50 border border-b border-t border-b-slate-100 border-t-slate-300 rounded-md;
     @apply w-full;
     @apply p-2;
     @apply accent-blue-500;
@@ -52,7 +52,7 @@
   .radio-card {
     @apply inline-flex items-center space-x-2 border-2 rounded-md p-2;
     @apply hover:bg-blue-100 hover:border-blue-400;
-    @apply bg-white;
+    @apply bg-slate-200/50 border-b border-t border-b-slate-100 border-t-slate-300;
   }
   .radio-card > input {
     @apply w-5 h-5;
@@ -65,7 +65,7 @@
 
   }
   .primary-button {
-    @apply border px-4 py-2 rounded-md bg-amber-300 border-amber-200 text-amber-900 font-semibold hover:bg-amber-200 hover:text-black/80 hover:shadow-md;
+    @apply border px-4 py-2 rounded-md bg-amber-300 border-amber-200 text-amber-900 font-semibold shadow-lg drop-shadow-md hover:bg-amber-200 hover:text-black/80 hover:shadow-xl;
   }
   .secondary-button {
     @apply border px-4 py-2 rounded-md bg-blue-500 text-white/90 font-semibold hover:bg-blue-400 hover:text-white hover:shadow-md;

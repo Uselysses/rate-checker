@@ -459,7 +459,7 @@ const Home: NextPage = () => {
         </ul>
       </section>
 
-      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-slate-100/50 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
+      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-white/50 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
         <h2 className="text-center">Double Check your Rates Now!</h2>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4 md:mx-auto">
