@@ -53,7 +53,7 @@ const ExplainerCard = ({title, description, heroIcon}: ExplainerCardProps) => {
     <div className="flex flex-col items-center space-y-1">
       <figure className="text-blue-500 w-20 h-20">{heroIcon}</figure>
       <h3 className="font-semibold text-center">{title}</h3>
-      <p className="text-center">{description}</p>
+      <p className="text-center text-black/80">{description}</p>
     </div>
   )
 }
@@ -340,7 +340,6 @@ const StateField = () => {
   )
 }
 
-
 const NoServiceField = () => {
   const { register, formState: {errors} } = useFormContext()
 
@@ -348,7 +347,7 @@ const NoServiceField = () => {
     <fieldset className="space-y-2 gap-x-8">
       <div className="md:col-span-2 my-2">
         <h3 className="">Our apologies, we&apos;re unable to service your state at the moment.</h3>
-        <p className="text-black/70">Please let us know which state you&apos;re located in so we know which states to serve next!</p>
+        <p className="text-black/70">Please let us know which state you&apos;re located in so we know which states to serve next! We&apos;ll let you know as soon as we&apos;re able to serve you.</p>
       </div>
 
       <div>
@@ -416,7 +415,7 @@ const Home: NextPage = () => {
       <div className="bg-gradient-to-r from-sky-500 to-blue-700 py-20 border-b-2 border-blue-400 shadow-md drop-shadow-lg">
         <section className="text-center">
           <h1 className="text-white/90">Double Check your Rate within 48 hours <br/> No Credit Pull Required</h1>
-          <p className="text-amber-200">Sleep better at night knowing you got the best rate possible</p>
+          <p className="text-amber-300 font-semibold">Sleep better at night knowing you got the best rate possible</p>
           <div className="space-x-8">
             <a 
               className="primary-button"
@@ -440,20 +439,20 @@ const Home: NextPage = () => {
         <ul className="md:grid md:grid-cols-2 space-y-4 md:space-y-0 md:gap-4">
           <div className="flex space-x-4 items-center">
             <ArrowRightIcon className="h-20 w-20"/>
-            <li>
+            <li className="text-black/80">
               According to <a className="text-blue-500 hover:text-blue-400" href="https://www.freddiemac.com/research/insight/20180417-consumers-leaving-money">research by Freddie Mac</a> <strong>nearly half of all home buyers pick the first lender they find</strong> without shopping for a better rate.
             </li>
           </div>
           <div className="flex space-x-4 items-center">
             <ArrowRightIcon className="h-20 w-20"/>
-            <li>
-              Not all lenders are created equal! <strong>Rates vary from lender to lender</strong>, by not getting a second opinion you&apos;re leaving thousands of dollars on the table.
+            <li className="text-black/80">
+              Not all lenders are created equal! <strong>Rates vary from lender to lender</strong>, by not getting a second opinion you&apos;re potentially leaving thousands of dollars on the table.
             </li>
           </div>
         </ul>
       </section>
 
-      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-slate-100/10 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
+      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-white/30 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
         <h2 className="text-center">Double Check your Rates Now!</h2>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4 md:mx-auto">
