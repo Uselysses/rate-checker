@@ -5,14 +5,17 @@ import { DocumentCheckIcon, InboxArrowDownIcon, LockClosedIcon, ArrowRightIcon }
 const CARD_CONTENT = [
   {
     title: "Fill in the Form",
+    description: "The only personal information we take is an email.",
     heroIcon: <DocumentCheckIcon />
   },
   {
     title: "Receive your rates in your inbox",
+    description: "Within 48 hours we'll send over your mortgage rates.",
     heroIcon: <InboxArrowDownIcon/>
   },
   {
     title: "Get a better quote? Lock it in!",
+    description: "Make the switch and save yourself thousands.",
     heroIcon: <LockClosedIcon/>,
   },
 ]
@@ -41,14 +44,16 @@ const ERROR_MESSAGES = {
 type ExplainerCardProps = {
   title: string;
   heroIcon: JSX.Element;
+  description: string;
   key?: number;
 }
 
-const ExplainerCard = ({title, heroIcon}: ExplainerCardProps) => {
+const ExplainerCard = ({title, description, heroIcon}: ExplainerCardProps) => {
   return(
-    <div className="flex flex-col items-center space-y-2">
+    <div className="flex flex-col items-center space-y-1">
       <figure className="text-blue-500 w-20 h-20">{heroIcon}</figure>
-      <h3 className="font-semibold">{title}</h3>
+      <h3 className="font-semibold text-center">{title}</h3>
+      <p className="text-center">{description}</p>
     </div>
   )
 }
@@ -425,17 +430,6 @@ const Home: NextPage = () => {
 
       <section className="space-y-8">
         <h2 className="text-center">Double checking your rate is strings-free!</h2>
-        <div className="space-y-4">
-          <p>
-            We only take an email address (throwaway emails work perfect well) and 
-            will never spam you or sell your information. 
-          </p>
-          <p>
-            With this information we’re able to give you a rate that’s specific to 
-            you, unlike many services that simply provide general rate comparisons.
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-3 gap-8">
           {explainerCards}
         </div>
@@ -443,14 +437,14 @@ const Home: NextPage = () => {
 
       <section className="space-y-8">
         <h2 className="text-center">You could save thousands on your mortgage</h2>
-        <ul className="md:grid md:grid-cols-2 space-y-4 md:space-y-0">
-          <div className="flex space-x-2 items-center">
+        <ul className="md:grid md:grid-cols-2 space-y-4 md:space-y-0 md:gap-4">
+          <div className="flex space-x-4 items-center">
             <ArrowRightIcon className="h-20 w-20"/>
             <li>
               According to <a className="text-blue-500 hover:text-blue-400" href="https://www.freddiemac.com/research/insight/20180417-consumers-leaving-money">research by Freddie Mac</a> <strong>nearly half of all home buyers pick the first lender they find</strong> without shopping for a better rate.
             </li>
           </div>
-          <div className="flex space-x-2 items-center">
+          <div className="flex space-x-4 items-center">
             <ArrowRightIcon className="h-20 w-20"/>
             <li>
               Not all lenders are created equal! <strong>Rates vary from lender to lender</strong>, by not getting a second opinion you&apos;re leaving thousands of dollars on the table.
@@ -459,7 +453,7 @@ const Home: NextPage = () => {
         </ul>
       </section>
 
-      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-white/50 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
+      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-slate-100/10 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
         <h2 className="text-center">Double Check your Rates Now!</h2>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4 md:mx-auto">
