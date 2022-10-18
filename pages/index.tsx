@@ -109,6 +109,36 @@ const BinaryRadioButtons = ({ field }: BinaryRadioButtonsProps ) => {
   )
 }
 
+type LoanOfficerProfileProps = {
+  photo: any;
+  yelpLink: string;
+  instagramLink: string;
+  name: string;
+  description: string;
+  roles: string;
+}
+
+const LoanOfficerProfile = ({ photo, yelpLink, instagramLink, name, description, roles }: LoanOfficerProfileProps) => {
+  return(
+    <div className="flex flex-col col-start-2 border border-slate-200 shadow-md drop-shadow-lg rounded-md bg-white/90 px-8 pt-8 pb-4 space-y-1">
+      <div className="mx-auto border border-slate-200 shadow-lg rounded-full overflow-hidden h-24 w-24 -mt-20 mb-2">
+        <Image src={photo} width={50} height={50} layout="responsive"/>
+      </div>
+      <h3>{name}</h3>
+      <p className="text-black/50">{roles}</p>
+      <p>{description}</p>
+      <div className="space-x-2 pt-2">
+        <a target="_blank" href={yelpLink}>
+          <Image src={yelpIcon} width={25} height={25} className=""/>
+        </a>
+        <a target="_blank" href={instagramLink}>
+          <Image src={instagramIcon} width={25} height={25} className="" />
+        </a>
+      </div>
+    </div>
+  )
+}
+
 const FormField = () => {
   const { register, formState: {errors} } = useFormContext()
 
@@ -539,23 +569,14 @@ const Home: NextPage = () => {
       <section>
         <h2 className="text-center">Want to lock it in? We&apos;ll set you up with an experienced loan officer</h2>
         <div className="grid md:grid-cols-3 pt-10">
-          <div className="flex flex-col col-start-2 border border-slate-200 shadow-md drop-shadow-lg rounded-md bg-white/90 px-8 pt-8 pb-4 space-y-1">
-            <div className="mx-auto border border-slate-200 shadow-lg rounded-full overflow-hidden h-24 w-24 -mt-20 mb-2">
-              <Image src={peterPic} width={50} height={50} layout="responsive"/>
-            </div>
-            <h3>Peter Khoury</h3>
-            <p className="text-black/50">Loan Officer, Realtor</p>
-            <p>Peter Khoury is a fully licensed Loan Officer and Realtor who&apos;s been in the industry for over 15 years.</p>
-            <div className="space-x-2 pt-2">
-              <a target="_blank" href="https://www.yelp.com/biz/khoury-finance-los-angeles">
-                <Image src={yelpIcon} width={25} height={25} className=""/>
-              </a>
-              <a target="_blank" href="https://www.instagram.com/khouryfinance/">
-                <Image src={instagramIcon} width={25} height={25} className="" />
-              </a>
-            </div>
-
-          </div>
+          <LoanOfficerProfile 
+            photo={peterPic} 
+            yelpLink="https://www.yelp.com/biz/khoury-finance-los-angeles"  
+            instagramLink="https://www.instagram.com/khouryfinance/"
+            name="Peter Khoury"
+            description="Peter Khoury is a Loan Officer and Realtor who&apos;s been in the industry for over 15 years."
+            roles="Loan Officer, Realtor, Founder"
+          />
         </div>
       </section>
 
