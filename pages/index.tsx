@@ -37,7 +37,6 @@ const ERROR_MESSAGES = {
   occupancy: { required: "Please select your occupancy type" },
   midFico: { required: "Please select a FICO score range" },
   reserves: { required: "Please select a reserve range" },
-  pmi: { required: "Please select a PMI type" },
 }
 
 
@@ -106,7 +105,6 @@ const BinaryRadioButtons = ({ field }: BinaryRadioButtonsProps ) => {
   )
 }
 
-
 const FormField = () => {
   const { register, formState: {errors} } = useFormContext()
 
@@ -114,25 +112,11 @@ const FormField = () => {
     <div className="space-y-8">
       <fieldset className="space-y-4 md:gap-x-8">
         <legend>Tell us about your mortgage</legend>
-        <div className="space-y-1">
-          <label htmlFor="goal">Goal</label>
-          <div>
-            <select {...register("goal", ERROR_MESSAGES.goal)} id="goal">
-              <option value="">--</option>
-              <option value="purchase loan">Purchase Loan</option>
-              <option value="rate and term">Rate & Term</option>
-              <option value="cash out">Cash Out</option>
-              <option value="fha streamline">FHA Streamline</option>
-              <option value="va irrl">VA IRRL</option>
-            </select>
-            <ErrorMessage field={errors?.goal} />
-          </div>
-        </div>
 
-        <div className="space-y-1">
-          <label htmlFor="loanProduct">Loan Product</label>
+        <div className="space-y-1 md:col-span-2">
+          <label htmlFor="loanProduct">Loan Product (select multiple if you want quotes for those products)</label>
           <div>
-            <select {...register("loanProduct", ERROR_MESSAGES.loanProduct)} id="loanProduct" >
+            <select {...register("loanProduct", ERROR_MESSAGES.loanProduct)} id="loanProduct" multiple>
               <option value="">--</option>
               <option value="30 year fixed">30 Year Fixed</option>
               <option value="20 year fixed">20 Year Fixed</option>
@@ -153,6 +137,22 @@ const FormField = () => {
         </div>
 
         <div className="space-y-1">
+          <label htmlFor="goal">Goal</label>
+          <div>
+            <select {...register("goal", ERROR_MESSAGES.goal)} id="goal">
+              <option value="">--</option>
+              <option value="purchase loan">Purchase Loan</option>
+              <option value="rate and term">Rate & Term</option>
+              <option value="cash out">Cash Out</option>
+              <option value="fha streamline">FHA Streamline</option>
+              <option value="va irrl">VA IRRL</option>
+            </select>
+            <ErrorMessage field={errors?.goal} />
+          </div>
+        </div>
+
+
+        <div className="space-y-1">
           <label htmlFor="loanType">Loan Type</label>
           <div>
             <select {...register("loanType", ERROR_MESSAGES.loanType)} id="loanType">
@@ -164,19 +164,6 @@ const FormField = () => {
               <option value="Jumbo">Jumbo</option>
             </select>
             <ErrorMessage field={errors?.loanType} />
-          </div>
-        </div>
-
-        <div className="space-y-1">
-          <label htmlFor="pmi">PMI</label>
-          <div>
-            <select {...register("pmi", ERROR_MESSAGES.pmi)} id="pmi">
-              <option value="">--</option>
-              <option value="not needed">Not Needed</option>
-              <option value="borrower pays pmi">You Pay the PMI</option>
-              <option value="lender pays pmi">Lender Pays the PMI</option>
-            </select>
-            <ErrorMessage field={errors?.pmi}/>
           </div>
         </div>
 
@@ -292,18 +279,19 @@ const FormField = () => {
         </div>
 
         <div className="space-y-1">
-          <legend className="text-slate-600">Do you have any impounds?</legend>
+          <legend className="text-slate-600">Do you want an <a target="_blank" className="text-blue-500 hover:text-blue-400" href="https://www.investopedia.com/articles/mortgages-real-estate/09/mortgage-impound-accounts.asp">impound account?</a></legend>
           <BinaryRadioButtons field="impounds"  />
+        </div>
+
+        <div className="space-y-1">
+          <label htmlFor="email">Email Address:</label>
+          <div>
+            <input {...register("email", ERROR_MESSAGES.email)} type="email" id="email"/>
+            <ErrorMessage field={errors?.email}/>
+          </div>
         </div>
       </fieldset>
 
-      <fieldset className="space-y-1 md:flex md:flex-col">
-        <label htmlFor="email">Email Address</label>
-        <div className="md:w-1/2 md:gap-x-8">
-          <input {...register("email", ERROR_MESSAGES.email)} type="email" id="email"/>
-          <ErrorMessage field={errors?.email}/>
-        </div>
-      </fieldset>
     </div>
   )
 }
@@ -385,19 +373,83 @@ const UploadEstimateField = () => {
   const { register, formState: {errors} } = useFormContext()
 
   return(
-    <fieldset className="grid grid-cols-1 gap-4">
-      <div className="space-y-1">
-        <label>Upload your estimate and we&apos;ll give you a second opinion:</label>
+    <fieldset className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="space-y-1 col-span-2">
+        <label>Your previous loan estimate gives us most of the information we need, with just a few general details below, we can give you your rate quote.</label>
         <input type="file" id="loanEstimateFile" name="loanEstimateFile" className="w-full md:w-1/2"/>
       </div>
 
-      <div className="grid grid-cols-2 space-y-1">
-        <label htmlFor="email" className="col-span-2">Email Address:</label>
-        <div className="col-span-2 md:col-span-1">
-          <input {...register("email", ERROR_MESSAGES.email)} type="email" id="email" />
-          <ErrorMessage field={errors?.email}/>
+      <div className="space-y-1 col-span-2">
+        <label htmlFor="occupancy">Occupancy</label>
+        <div className="w-full md:w-1/2">
+          <select {...register("occupancy", ERROR_MESSAGES.occupancy)} id="occupancy" name="occupancy">
+            <option value="">--</option>
+            <option value="primary residence">Primary Residence</option>
+            <option value="second home">Second Home</option>
+            <option value="investment property">Investment Property</option>
+          </select>
+          <ErrorMessage field={errors?.occupancy}/>
         </div>
       </div>
+
+      <fieldset className="space-y-4 col-span-2 md:gap-x-8">
+        <legend>Give us an idea of your finances</legend>
+        <div className="space-y-1">
+          <label htmlFor="midFico">Mid FICO</label>
+          <div>
+            <select {...register("midFico", ERROR_MESSAGES.midFico)} id="midFico">
+              <option value="">--</option>
+              <option value="760+">760+</option>
+              <option value="740-759">740-759</option>
+              <option value="720-739">720-739</option>
+              <option value="700-719">700-719</option>
+              <option value="680-699">680-699</option>
+              <option value="660-679">660-679</option>
+              <option value="640-659">640-659</option>
+              <option value="620-639">620-639</option>
+              <option value="600-619">600-619</option>
+              <option value="580-599">580-599</option>
+            </select>
+            <ErrorMessage field={errors?.midFico}/>
+          </div>
+        </div>
+
+        <div className="space-y-1">
+          <label htmlFor="reserves">Reserves</label>
+          <div>
+            <select {...register("reserves", ERROR_MESSAGES.reserves)} id="reserves">
+              <option value="">--</option>
+              <option value="12+ months">12+ Months</option>
+              <option value="9-12 months">9-12 Months</option>
+              <option value="6-9 months">6-9 Months</option>
+              <option value="3-6 months">3-6 Months</option>
+              <option value="1-3 months">1-3 Months</option>
+              <option value="0 months">0 Months</option>
+            </select>
+            <ErrorMessage field={errors?.reserves}/>
+          </div>
+        </div>
+
+        <div className="space-y-1">
+          <legend className="text-slate-600">Are you self-employed?</legend>
+          <BinaryRadioButtons field="selfEmployed"  />
+        </div>
+
+        <div className="space-y-1">
+          <legend className="text-slate-600">Do you want an <a target="_blank" className="text-blue-500 hover:text-blue-400" href="https://www.investopedia.com/articles/mortgages-real-estate/09/mortgage-impound-accounts.asp">impound account?</a></legend>
+          <BinaryRadioButtons field="impounds"  />
+        </div>
+
+        <div className="space-y-1">
+          <label htmlFor="email">Email Address:</label>
+          <div>
+            <input {...register("email", ERROR_MESSAGES.email)} type="email" id="email"/>
+            <ErrorMessage field={errors?.email}/>
+          </div>
+        </div>
+
+      </fieldset>
+
     </fieldset>
   )
 }
@@ -411,7 +463,7 @@ const Home: NextPage = () => {
   const hasLoanEstimate = methods.watch("hasLoanEstimate")
 
   return (
-    <article className="space-y-32 mb-20">
+    <article className="space-y-32">
       <div className="bg-gradient-to-r from-sky-500 to-blue-700 py-20 border-b-2 border-blue-400 shadow-md drop-shadow-lg">
         <section className="text-center">
           <h1 className="text-white/90">Double Check your Rate within 48 hours <br/> No Credit Pull Required</h1>
@@ -479,6 +531,19 @@ const Home: NextPage = () => {
         </FormProvider>
       </section>
 
+
+      <section>
+        <h2>Want to lock it in? Our team of loan officers are happy to help</h2>
+        <div className="grid grid-cols-3">
+          <div className="col-start-2 border rounded-md bg-white/90 p-8">
+            <figure/>
+            <h3>Peter Khoury</h3>
+            <small>Loan Officer, Realtor, Founder</small>
+            <p>Peter Khoury is a loan officer and Realtor double-threat who&apos;s been serving the Los Angeles market for over 15 years.</p>
+          </div>
+        </div>
+      </section>
+
       <section>
         <h2>FAQs:</h2>
         <div>
@@ -507,6 +572,46 @@ const Home: NextPage = () => {
         </div>
 
       </section>
+
+      <div className="py-16 bg-gradient-to-r from-sky-700 to-blue-900">
+        <section className="md:grid md:grid-cols-4 space-y-0 text-white/90 md:gap-32">
+          <div className="space-y-4 col-span-2">
+            <h3>Rate checker is a service provided by © Khoury Finance.</h3>
+
+            <div>
+              <h4>Licensed States</h4>
+              <p>California, Texas, Florida, Virginia, Maryland, Tennessee</p>
+            </div>
+
+            <div className="flex space-x-8"> 
+              <div>
+                <h4>License</h4>
+                <p>#01809854</p>
+              </div>
+
+              <div>
+                <h4>NMLS</h4>
+                <p>#308946</p>
+              </div>
+            </div>
+
+            <p>2022 Khoury Finance @ 6303 Owensmouth Avenue 10th FL. Woodland Hills CA 91367</p>
+          </div>
+
+          <div className="flex flex-col space-y-1 pt-8 md:pt-0">
+            <h3>Legal</h3>
+            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/privacy">Privacy Policy</a>
+            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/accessibility">Accessibility Statement</a>
+            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/fair-housing-pledge">Fair Housing Pledge</a>
+          </div>
+
+          <div className="flex flex-col space-y-1 pt-8 md:pt-0">
+            <h3>Resources</h3>
+            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/">KhouryFinance.com</a>
+            <a className="hover:text-white/50" target="_blank" href="https://wiki.khouryfinance.com/">Wiki</a>
+          </div>
+        </section>
+      </div>
     </article>
   )
 }
