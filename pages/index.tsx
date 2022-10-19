@@ -5,6 +5,7 @@ import yelpIcon from '../public/yelp_favicon.png'
 import instagramIcon from '../public/Instagram_Glyph_Gradient.png'
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { DocumentCheckIcon, InboxArrowDownIcon, LockClosedIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+import { Checkboxes, ExplainerCard, ErrorMessage, BinaryRadioButtons } from '../components'
 
 const CARD_CONTENT = [
   {
@@ -43,71 +44,25 @@ const ERROR_MESSAGES = {
   reserves: { required: "Please select a reserve range" },
 }
 
-
-type ExplainerCardProps = {
-  title: string;
-  heroIcon: JSX.Element;
-  description: string;
-  key?: number;
-}
-
-const ExplainerCard = ({title, description, heroIcon}: ExplainerCardProps) => {
-  return(
-    <div className="flex flex-col items-center space-y-1">
-      <figure className="text-blue-500 w-20 h-20">{heroIcon}</figure>
-      <h3 className="font-semibold text-center">{title}</h3>
-      <p className="text-center text-black/80">{description}</p>
-    </div>
-  )
+const LOAN_OPTIONS = {
+  "30 Year Fixed": "30 year fixed",
+  "20 Year Fixed": "20 year fixed",
+  "15 Year Fixed": "15 year fixed",
+  "10 Year Fixed": "10 year fixed",
+  "5 Year Fixed": "5 year fixed",
+  "3/1 Adjustable": "3/1 adjustable",
+  "5/1 Adjustable": "5/1 adjustable",
+  "7/1 Adjustable": "7/1 adjustable",
+  "10/1 Adjustable": "10/1 adjustable",
+  "3/6 Adjustable": "3/6 adjustable",
+  "5/6 Adjustable": "5/6 adjustable",
+  "7/6 Adjustable": "7/6 adjustable",
+  "10/6 Adjustable": "10/6 adjustable",
 }
 
 const explainerCards = CARD_CONTENT.map((card, index) => {
   return <ExplainerCard {...card} key={index} />
 })
-
-type ErrorMessageProps = {
-  field?: {
-    message?: string;
-  }
-}
-
-const ErrorMessage = ({ field }: ErrorMessageProps) => { 
-  return(
-    field ? <span className="text-red-600 text-sm">{field.message}</span> : null
-  )
-}
-
-type BinaryRadioButtonsProps = {
-  field: string;
-}
-
-const BinaryRadioButtons = ({ field }: BinaryRadioButtonsProps ) => {
-  const { register, watch } = useFormContext();
-  const value = watch(field)
-
-  const style = (id: string) => {
-    if (value === "Yes" && id === "Yes") {
-      return "radio-card radio-card--active"
-    } else if (value === "No" && id === "No") {
-      return "radio-card radio-card--active"
-    } else {
-      return "radio-card"
-    }
-  }
-
-  return(
-    <div className="grid grid-cols-2 mt-2 gap-x-2">
-      <label className={style("Yes")}>
-        <input {...register(field)} type="radio" id="Yes" value="Yes" className="accent-blue-500" />
-        <span>Yes</span>
-      </label>
-      <label className={style("No")}>
-        <input {...register(field)} type="radio" id="No" value="No" className="accent-blue-500" />
-        <span>No</span>
-      </label>
-    </div>
-  )
-}
 
 type LoanOfficerProfileProps = {
   photo: any;
@@ -120,18 +75,18 @@ type LoanOfficerProfileProps = {
 
 const LoanOfficerProfile = ({ photo, yelpLink, instagramLink, name, description, roles }: LoanOfficerProfileProps) => {
   return(
-    <div className="flex flex-col col-start-2 border border-slate-200 shadow-md drop-shadow-lg rounded-md bg-white/90 px-8 pt-8 pb-4 space-y-1">
-      <div className="mx-auto border border-slate-200 shadow-lg rounded-full overflow-hidden h-24 w-24 -mt-20 mb-2">
+    <div className="flex flex-col col-start-2 border border-neutral-200 shadow-md drop-shadow-lg rounded-md bg-white/90 px-8 pt-8 pb-4 space-y-1">
+      <div className="mx-auto border border-neutral-200 shadow-lg rounded-full overflow-hidden h-24 w-24 -mt-20 mb-2">
         <Image src={photo} width={50} height={50} layout="responsive"/>
       </div>
       <h3>{name}</h3>
       <p className="text-black/50">{roles}</p>
       <p>{description}</p>
       <div className="space-x-2 pt-2">
-        <a target="_blank" href={yelpLink}>
+        <a href={yelpLink}>
           <Image src={yelpIcon} width={25} height={25} className=""/>
         </a>
-        <a target="_blank" href={instagramLink}>
+        <a href={instagramLink}>
           <Image src={instagramIcon} width={25} height={25} className="" />
         </a>
       </div>
@@ -147,25 +102,10 @@ const FormField = () => {
       <fieldset className="space-y-4 md:gap-x-8">
         <legend>Tell us about your mortgage</legend>
 
-        <div className="space-y-1 md:col-span-2">
+        <div className="space-y-4 md:col-span-2">
           <label htmlFor="loanProduct">Loan Product (select multiple if you want quotes for those products)</label>
           <div>
-            <select {...register("loanProduct", ERROR_MESSAGES.loanProduct)} id="loanProduct" multiple>
-              <option value="">--</option>
-              <option value="30 year fixed">30 Year Fixed</option>
-              <option value="20 year fixed">20 Year Fixed</option>
-              <option value="15 year fixed">15 Year Fixed</option>
-              <option value="10 year fixed">10 Year Fixed</option>
-              <option value="5 year fixed">5 Year Fixed</option>
-              <option value="3/1 adjustable">3/1 Adjustable</option>
-              <option value="5/1 adjustable">5/1 Adjustable</option>
-              <option value="7/1 adjustable">7/1 Adjustable</option>
-              <option value="10/1 adjustable">10/1 Adjustable</option>
-              <option value="3/6 adjustable">3/6 Adjustable</option>
-              <option value="5/6 adjustable">5/6 Adjustable</option>
-              <option value="7/6 adjustable">7/6 Adjustable</option>
-              <option value="10/6 adjustable">10/6 Adjustable</option>
-            </select>
+            <Checkboxes field="loanProduct" options={LOAN_OPTIONS} />
             <ErrorMessage field={errors?.loanProduct} />
           </div>
         </div>
@@ -308,12 +248,12 @@ const FormField = () => {
         </div>
 
         <div className="space-y-1">
-          <legend className="text-slate-600">Are you self-employed?</legend>
+          <legend className="text-neutral-600">Are you self-employed?</legend>
           <BinaryRadioButtons field="selfEmployed"  />
         </div>
 
         <div className="space-y-1">
-          <legend className="text-slate-600">Do you want an <a target="_blank" className="text-blue-500 hover:text-blue-400" href="https://www.investopedia.com/articles/mortgages-real-estate/09/mortgage-impound-accounts.asp">impound account?</a></legend>
+          <legend className="text-neutral-600">Do you want an <a className="text-primary-500 hover:text-primary-400" href="https://www.investopedia.com/articles/mortgages-real-estate/09/mortgage-impound-accounts.asp">impound account?</a></legend>
           <BinaryRadioButtons field="impounds"  />
         </div>
 
@@ -410,7 +350,7 @@ const UploadEstimateField = () => {
     <fieldset className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="space-y-1 col-span-2">
         <label>Your previous loan estimate gives us most of the information we need, with just a few general details below, we can give you your rate quote.</label>
-        <input type="file" id="loanEstimateFile" name="loanEstimateFile" className="w-full md:w-1/2"/>
+        <input type="file" id="loanEstimateFile" name="loanEstimateFile" className="w-full md:w-1/2 border rounded-md border-t-neutral-300 border-l-neutral-300 border-b-neutral-200 border-r-neutral-200 py-2 px-2 bg-neutral-200/50"/>
       </div>
 
       <div className="space-y-1 col-span-2">
@@ -465,12 +405,12 @@ const UploadEstimateField = () => {
         </div>
 
         <div className="space-y-1">
-          <legend className="text-slate-600">Are you self-employed?</legend>
+          <legend className="text-neutral-600">Are you self-employed?</legend>
           <BinaryRadioButtons field="selfEmployed"  />
         </div>
 
         <div className="space-y-1">
-          <legend className="text-slate-600">Do you want an <a target="_blank" className="text-blue-500 hover:text-blue-400" href="https://www.investopedia.com/articles/mortgages-real-estate/09/mortgage-impound-accounts.asp">impound account?</a></legend>
+          <legend className="text-neutral-600">Do you want an <a className="text-primary-500 hover:text-primary-400" href="https://www.investopedia.com/articles/mortgages-real-estate/09/mortgage-impound-accounts.asp">impound account?</a></legend>
           <BinaryRadioButtons field="impounds"  />
         </div>
 
@@ -498,10 +438,10 @@ const Home: NextPage = () => {
 
   return (
     <article className="space-y-32">
-      <div className="bg-gradient-to-r from-sky-500 to-blue-700 py-20 border-b-2 border-blue-400 shadow-md drop-shadow-lg">
+      <div className="bg-gradient-to-r from-primaryAccent-500 to-primary-700 py-20 border-b-2 border-primary-400 shadow-md drop-shadow-lg">
         <section className="text-center">
           <h1 className="text-white/90">Double Check your Rate within 48 hours <br/> No Credit Pull Required</h1>
-          <p className="text-amber-300 font-semibold">Sleep better at night knowing you got the best rate possible</p>
+          <p className="text-secondary-300 font-semibold">Sleep better at night knowing you got the best rate possible</p>
           <div className="space-x-8">
             <a 
               className="primary-button"
@@ -526,7 +466,7 @@ const Home: NextPage = () => {
           <div className="flex space-x-4 items-center">
             <ArrowRightIcon className="h-20 w-20"/>
             <li className="text-black/80">
-              According to <a className="text-blue-500 hover:text-blue-400" href="https://www.freddiemac.com/research/insight/20180417-consumers-leaving-money">research by Freddie Mac</a> <strong>nearly half of all home buyers pick the first lender they find</strong> without shopping for a better rate.
+              According to <a className="text-primary-500 hover:text-primary-400" href="https://www.freddiemac.com/research/insight/20180417-consumers-leaving-money">research by Freddie Mac</a> <strong>nearly half of all home buyers pick the first lender they find</strong> without shopping for a better rate.
             </li>
           </div>
           <div className="flex space-x-4 items-center">
@@ -538,7 +478,7 @@ const Home: NextPage = () => {
         </ul>
       </section>
 
-      <section id="form" className="border-t-8 border-blue-400 rounded-md md:p-8 bg-white/30 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
+      <section id="form" className="border-t-8 border-primary-400 rounded-md md:p-8 bg-white/30 md:max-w-screen-sm md:mx-auto shadow-lg p-4">
         <h2 className="text-center">Double Check your Rates Now!</h2>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-4 md:mx-auto">
@@ -609,7 +549,7 @@ const Home: NextPage = () => {
 
       </section>
 
-      <div className="py-16 bg-gradient-to-r from-sky-700 to-blue-900">
+      <div className="py-16 bg-gradient-to-r from-primaryAccent-700 to-primary-900">
         <section className="md:grid md:grid-cols-4 space-y-0 text-white/90 md:gap-32">
           <div className="space-y-4 col-span-2">
             <h3>Rate checker is a service provided by © Khoury Finance.</h3>
@@ -636,15 +576,15 @@ const Home: NextPage = () => {
 
           <div className="flex flex-col space-y-1 pt-8 md:pt-0">
             <h3>Legal</h3>
-            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/privacy">Privacy Policy</a>
-            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/accessibility">Accessibility Statement</a>
-            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/fair-housing-pledge">Fair Housing Pledge</a>
+            <a className="hover:text-white/50" href="https://www.khouryfinance.com/privacy">Privacy Policy</a>
+            <a className="hover:text-white/50" href="https://www.khouryfinance.com/accessibility">Accessibility Statement</a>
+            <a className="hover:text-white/50" href="https://www.khouryfinance.com/fair-housing-pledge">Fair Housing Pledge</a>
           </div>
 
           <div className="flex flex-col space-y-1 pt-8 md:pt-0">
             <h3>Resources</h3>
-            <a className="hover:text-white/50" target="_blank" href="https://www.khouryfinance.com/">KhouryFinance.com</a>
-            <a className="hover:text-white/50" target="_blank" href="https://wiki.khouryfinance.com/">Wiki</a>
+            <a className="hover:text-white/50" href="https://www.khouryfinance.com/">KhouryFinance.com</a>
+            <a className="hover:text-white/50" href="https://wiki.khouryfinance.com/">Wiki</a>
           </div>
         </section>
       </div>

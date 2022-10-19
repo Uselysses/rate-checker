@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -16,7 +18,18 @@ module.exports = {
         "sans-serif",
       ]
     },
-    extend: {},
+    extend: {
+
+    },
+    colors: {
+      primary: colors.blue,
+      primaryAccent: colors.sky,
+      secondary: colors.amber,
+      neutral: colors.slate,
+      black: colors.black,
+      white: colors.white,
+      red: colors.red,
+    }
   },
   plugins: [],
 }
