@@ -71,23 +71,24 @@ type LoanOfficerProfileProps = {
   name: string;
   description: string;
   roles: string;
+  alt: string;
 }
 
-const LoanOfficerProfile = ({ photo, yelpLink, instagramLink, name, description, roles }: LoanOfficerProfileProps) => {
+const LoanOfficerProfile = ({ photo, yelpLink, instagramLink, name, description, roles, alt }: LoanOfficerProfileProps) => {
   return(
     <div className="flex flex-col col-start-2 border border-neutral-200 shadow-md drop-shadow-lg rounded-md bg-white/90 px-8 pt-8 pb-4 space-y-1">
       <div className="mx-auto border border-neutral-200 shadow-lg rounded-full overflow-hidden h-24 w-24 -mt-20 mb-2">
-        <Image src={photo} width={50} height={50} layout="responsive"/>
+        <Image src={photo} width={50} height={50} layout="responsive" alt={alt}/>
       </div>
       <h3>{name}</h3>
       <p className="text-black/50">{roles}</p>
       <p>{description}</p>
       <div className="space-x-2 pt-2">
         <a href={yelpLink}>
-          <Image src={yelpIcon} width={25} height={25} className=""/>
+          <Image src={yelpIcon} width={25} height={25} alt="Yelp logo and link to Yelp profile"/>
         </a>
         <a href={instagramLink}>
-          <Image src={instagramIcon} width={25} height={25} className="" />
+          <Image src={instagramIcon} width={25} height={25} className="" alt="Instagram logo and link to Instagram profile" />
         </a>
       </div>
     </div>
@@ -516,6 +517,7 @@ const Home: NextPage = () => {
             name="Peter Khoury"
             description="Peter Khoury is a Loan Officer and Realtor who&apos;s been in the industry for over 15 years."
             roles="Loan Officer, Realtor, Founder"
+            alt="Photograph of Peter Khoury, Loan Officer."
           />
         </div>
       </section>

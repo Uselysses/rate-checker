@@ -12,7 +12,7 @@ const Checkboxes = ({ field, options }: CheckboxesProps) => {
 
   const values: string[] | boolean | undefined = watch(field)
 
-  const checkboxes: JSX.Element[] = Object.entries(options).map(([key, value]) => {
+  const checkboxes: JSX.Element[] = Object.entries(options).map(([key, value], index) => {
 
     let selectedStyle: string = "border border-neutral-300 rounded-md py-1 px-2"
 
@@ -24,7 +24,7 @@ const Checkboxes = ({ field, options }: CheckboxesProps) => {
     }
 
     return(
-      <li className={selectedStyle}>
+      <li className={selectedStyle} key={index}>
         <label className="space-x-2 w-full">
           <input {...register(field)} type="checkbox" value={value} className="accent-primary-500" />
           <span>{key}</span>
